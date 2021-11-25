@@ -133,6 +133,9 @@ class ListGridFTPProcessor extends AbstractProcessor {
             Vector destFiles = client.mlsd(destPath)
             for (int i = 0; i < destFiles.size(); i++) {
                 MlsxEntry file = new MlsxEntry(destFiles.get(i).toString())
+                if (file.getFileName() == "." || file.getFileName() == "..") {
+                    continue
+                }
                 final Map<String, String> attributes = new HashMap<>()
                 String abspath = destFiles.size() == 1
                                     ? normalizedDestPath

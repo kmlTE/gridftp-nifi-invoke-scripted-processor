@@ -123,12 +123,11 @@ class GetGridFTPProcessor extends AbstractProcessor {
 
             try {
                 flowFile = session.importFrom(input_stream, flowFile)
+                session.transfer(flowFile, REL_SUCCESS)
             } finally {
                 input_stream.close()
             }
-
-            session.transfer(flowFile, REL_SUCCESS)
-            session.commit()
+            
             
         } catch (final Exception e) {
             getLogger().error('Failed to download {}; will route to failure', [e] as Object[])

@@ -142,7 +142,6 @@ class PutGridFTPProcessor extends AbstractProcessor {
             } as InputStreamCallback)
 
             session.transfer(flowFile, REL_SUCCESS)
-            session.commit()
             
         } catch (final Exception e) {
             getLogger().error('Failed to download {}; will route to failure', [e] as Object[])
